@@ -15,28 +15,39 @@ $(function(){
 var letters = ["a","b","c","d","e","f","g","h"];
 var wins =  0;
 var losses = 0;
-var playerGuess = $("input").val();
+var playerGuess = $(".guess").val();
 var guessRemainder = 0;
 var guessCount = 1;
 
-var compGuess = Math.floor((Math.random() * letters.length));
+var compGuess = Math.floor((Math.random() * letters.length) + 1);
 
 //	for (var i = 0; i < letters.length; i++) {
 //		var answer = playerGuess[i];
 //	}
 
 // When player is entering letters??? and computer is selecting its answer
-	$("input").keyup(function(){
-		var value = $(this).val();
-		$("#guessCount").append( value + " ");
+	$("#start").on('click', function(){
+		console.log(compGuess);
 	});
 
-if(playerGuess === compGuess){
-	wins++;
-} else {
-	losses++;
-}
+	//When user types letter, print to Your Guesses so far:
+	$("input").keyup(function(){
+		var playerGuess = $(this).val();
+		$("#guessCount").append( playerGuess + " ");
+	});
 
+	if(playerGuess === compGuess){
+		wins++;
+	} else {
+		losses++;
+	}
+//reset button
+	$("reset").on('click', function(){
+		wins = 0;
+		losses = 0;
+		$("input").val("");
+		$("#guessCount").empty();
+	})
 
 //at some point you'll need to clear the playerGuess contents
 //maybe use 

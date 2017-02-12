@@ -34,6 +34,7 @@ var compGuess = Math.floor((Math.random() * letters.length) + 1);
 	$("input").keyup(function(){
 		var playerGuess = $(this).val();
 		$("#guessCount").append( playerGuess + " ");
+		$(this).val('');
 	});
 
 	if(playerGuess === compGuess){
